@@ -1,25 +1,30 @@
 <main>
   <div class="wrapper">
     <h1>Crie sua conta</h1>
-    <form>
+    <form [formGroup]="formData">
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="text" placeholder="Digite seu email...">
+        <input type="text" formControlName="email" placeholder="Digite seu email...">
+        <app-form-error [condition]="fieldHasRequiredError('email') || false"
+          text="Email é obrigatório."></app-form-error>
+        <app-form-error [condition]="fieldHasPatternError('email') || false" text="Email inválido."></app-form-error>
       </div>
       <div class="form-group">
         <label for="username">Nome de usuário</label>
-        <input type="text" placeholder="Digite seu nome de usuário único...">
+        <input type="text" formControlName="username" placeholder="Digite seu nome de usuário único...">
+        <app-form-error [condition]="fieldHasRequiredError('username') || false"
+          text="Nome de usuário é obrigatório."></app-form-error>
       </div>
       <div class="form-group profile">
         <label for="profilePicture">Foto de perfil (Opcional)</label>
-        
+
         <div class="profile-picture-wrapper">
           <div class="img-preview-box">
             <img src="Default-Profile.webp" alt="">
           </div>
           <input type="file">
         </div>
-        
+
       </div>
 
       <div class="form-group">
@@ -27,8 +32,11 @@
         <textarea name="biography" id="biography" cols="30" rows="5"></textarea>
       </div>
       <div class="form-group">
-        <label for="password">Crie uma senha</label>
-        <input type="password">
+        <label for="password" >Crie uma senha</label>
+        <input type="password" formControlName="password">
+        <app-form-error [condition]="fieldHasRequiredError('password') || false"
+          text="Senha é obrigatória."></app-form-error>
+          <app-form-error [condition]="(this.formData.get('password')?.hasError('minlength') && this.formData.get('password')?.touched) || false" text="Senha deve ter no mínimo 6 caracteres"></app-form-error>
       </div>
       <div class="form-group">
         <button type="submit">Cadastrar</button>
