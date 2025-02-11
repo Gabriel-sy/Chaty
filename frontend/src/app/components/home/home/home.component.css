@@ -49,6 +49,15 @@
 
 }
 
+.notification-amount {
+  background-color: #F44336;
+  color: white;
+  border-radius: 12px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
 .main {
   background-color: #1a1a1a;
 }
