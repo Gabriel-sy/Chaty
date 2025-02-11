@@ -1,0 +1,153 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  color: #E0E0E0;
+  height: 100vh;
+}
+
+.side-bar {
+  background-color: #202020;
+  border-right: 2px solid #F44336;
+  padding: 20px;
+}
+
+.side-bar h2 {
+  margin-bottom: 20px;
+  color: #F44336;
+  font-size: 24px;
+}
+
+.chat-search {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #2D2E2E;
+  border-radius: 8px;
+  background-color: #2D2E2E;
+  color: #E0E0E0;
+  margin-bottom: 20px;
+  padding-left: 40px;
+}
+
+.chat-search:focus {
+  outline: none;
+  border-color: #F44336;
+}
+
+.chats-container {
+  border-top: 1px solid #2D2E2E;
+  padding-top: 20px;
+  height: calc(100vh - 140px);
+  overflow-y: auto;
+}
+
+.main {
+  background-color: #1a1a1a;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  padding: 15px 40px;
+  padding-right: 20px;
+  background-color: #202020;
+  border-bottom: 1px solid #2D2E2E;
+}
+
+.search-wrapper {
+  margin-right: auto;
+  width: 40%;
+  position: relative;
+}
+
+.user-search {
+  width: 90%;
+  padding: 12px 12px 12px 44px;
+  border: 1px solid #2D2E2E;
+  border-radius: 8px;
+  margin-left: 10px;
+  background-color: #2D2E2E;
+  color: #E0E0E0;
+}
+
+.user-search:focus {
+  outline: none;
+  border-color: #F44336;
+}
+
+.menu-items {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.menu-items svg {
+  fill: #E0E0E0;
+  cursor: pointer;
+  transition: fill 0.3s ease;
+}
+
+.menu-items svg:hover {
+  fill: #F44336;
+}
+
+.profile-img-box {
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.main h1 {
+  text-align: center;
+  margin-top: 40vh;
+  color: #666;
+  font-weight: 400;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #202020;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #F44336;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d32f2f;
+}
+
+.search-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  fill: #F44336;
+}
+
+.chat-search-icon {
+  position: absolute;
+  left: 30px;
+  transform: translateY(35%);
+}
