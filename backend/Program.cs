@@ -1,6 +1,8 @@
 using System.Text;
 using backend.AuthServices;
 using backend.Persistence;
+using backend.Repositories;
+using backend.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -12,6 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IJwtConfiguration, JwtConfiguration>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var connectionString = builder.Configuration.GetConnectionString("Chaty");
 builder.Services.AddDbContext<ChatyDbContext>(o => o.UseSqlServer(connectionString));

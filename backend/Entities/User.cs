@@ -7,11 +7,12 @@ public class User : BaseEntity
         UserChats = [];
     }
 
-    public User(string email, string userName, string password)
+    public User(string email, string userName, string password, string? biography)
     {
         Email = email;
         UserName = userName;
         Password = password;
+        Biography = biography ?? null;
         UserChats = [];
     }
 
