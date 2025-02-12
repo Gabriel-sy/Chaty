@@ -38,19 +38,5 @@ public class AuthRepository : IAuthRepository
         return user;
     }
 
-    // public async Task<User?> GetUserByUserName(string username)
-    // {
-    //     var user = 
-    //         await _context.Users.SingleOrDefaultAsync(u => u.UserName == username && !u.IsDeleted);
-    //
-    //     return user;
-    // }
-    //
-    // public async Task<User?> GetUserByEmail(string email)
-    // {
-    //     var user = 
-    //         await _context.Users.SingleOrDefaultAsync(u => u.Email == email && !u.IsDeleted);
-    //
-    //     return user;
-    // }
+    
 }

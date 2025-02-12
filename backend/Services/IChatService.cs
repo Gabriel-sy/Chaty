@@ -6,5 +6,5 @@ namespace backend.Services;
 public interface IChatService
 {
     Task<ResultViewModel> CreateChat(ChatInputModel model);
-    Task<ResultViewModel<List<ChatViewModel>>> GetUserChatsWithMessages(User user);
+    Task<ResultViewModel<List<Chat>>> GetUserChats(string username);
 }

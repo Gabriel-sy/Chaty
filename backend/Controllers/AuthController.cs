@@ -18,26 +18,28 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
+    [AllowAnonymous]
     public async Task<IActionResult> Register([FromBody] RegisterInputModel model)
     {
         var result = await _service.Register(model);
 
         if (!result.IsSuccess)
         {
-            return BadRequest("Usuário já existe");
+            return BadRequest(result.Message);
         }
 
         return Created();
     }
 
     [HttpPost("login")]
+    [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] LoginInputModel model)
     {
         var result = await _service.Login(model);
 
         if (!result.IsSuccess)
         {
-            return BadRequest("Credenciais inválidas");
+            return BadRequest(result.Message);
         }
 
         return Ok(new { jwt = result.Data });
