@@ -5,6 +5,20 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #1C1C1C;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden !important;
+}
+
+
 .content-wrapper {
   display: grid;
   grid-template-columns: 380px 1fr;
@@ -60,6 +74,7 @@
 
 .main {
   background-color: #1a1a1a;
+  
 }
 
 .nav-bar {
@@ -170,7 +185,7 @@
   transform: translateY(35%);
 }
 
-.chat {
+.chat-preview {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -182,7 +197,7 @@
   transition: all 0.3s ease;
 }
 
-.chat:hover {
+.chat-preview:hover {
   background-color: #363636;
   /* background-color: rgb(244, 67, 54, 0.3); Cor de quando clicar */
 }
@@ -210,6 +225,7 @@
 }
 
 .results-box {
+  display: none;
   position: absolute;
   top: calc(100% + 8px);
   left: 10px;
@@ -360,6 +376,7 @@
   animation: slideDown 0.2s ease-out;
   max-height: 400px;
   overflow-y: auto;
+  display: none;
 }
 
 .notifications-header {
@@ -492,5 +509,11 @@
 .notifications-box::-webkit-scrollbar-thumb:hover {
   background: #d32f2f;
 }
+
+.chat {
+  height: 100%;
+  width: 100%;
+}
+
 
 
