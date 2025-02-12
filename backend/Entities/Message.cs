@@ -1,4 +1,6 @@
-﻿namespace backend.Entities;
+﻿using backend.Models;
+
+namespace backend.Entities;
 
 public class Message : BaseEntity 
 {
@@ -24,4 +26,9 @@ public class Message : BaseEntity
     public bool Seen { get; private set; }
     
     public void MarkAsSeen() => Seen = true;
+
+    public MessageViewModel FromEntity()
+    {
+        return new MessageViewModel(MessageText, Seen);
+    }
 }

@@ -2,9 +2,17 @@
 
 public class UserChat
 {
-    public int UserId { get; set; }
-    public User User { get; set; }
+    public UserChat(int userId, User user, int chatId, Chat chat)
+    {
+        UserId = userId;
+        User = user;
+        ChatId = chatId;
+        Chat = chat;
+    }
 
-    public int ChatId { get; set; }
-    public Chat Chat { get; set; }
+    public int UserId { get; private set; }
+    public User User { get; private set; }
+
+    public int ChatId { get; private set; }
+    public Chat Chat { get; private set; }
 }

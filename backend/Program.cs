@@ -1,5 +1,6 @@
 using System.Text;
 using backend.AuthServices;
+using backend.Entities;
 using backend.Persistence;
 using backend.Repositories;
 using backend.Services;
@@ -16,6 +17,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IJwtConfiguration, JwtConfiguration>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IChatRepository, ChatRepository>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+builder.Services.AddScoped<IChatService, ChatService>();
+builder.Services.AddScoped<IMessageService, MessageService>();
 
 var connectionString = builder.Configuration.GetConnectionString("Chaty");
 builder.Services.AddDbContext<ChatyDbContext>(o => o.UseSqlServer(connectionString));
