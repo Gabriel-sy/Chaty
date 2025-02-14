@@ -382,7 +382,7 @@ html, body {
   animation: slideDown 0.2s ease-out;
   max-height: 400px;
   overflow-y: auto;
-  display: none;
+  display: block;
 }
 
 .notifications-header {

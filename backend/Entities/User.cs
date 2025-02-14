@@ -35,4 +35,9 @@ public class User : BaseEntity
     {
         ChatRequests.Add(userName);
     }
+
+    public void RemoveChatRequests(string username)
+    {
+        ChatRequests.RemoveAll(n => n == username);
+    }
 }

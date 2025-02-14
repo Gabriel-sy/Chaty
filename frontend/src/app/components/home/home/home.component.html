@@ -42,60 +42,26 @@
           </div> -->
         </div>
         <div class="menu-items">
-          <div class="notifications-wrapper">
-            <div class="notification-icon">
+          <div class="notifications-wrapper"  (click)="notificationDisplay = !notificationDisplay">
+            <div class="notification-icon" >
               <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#E0E0E0">
                 <path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/>
               </svg>
-              <span class="notification-badge">3</span>
+              <span class="notification-badge">{{ requests.length }}</span>
             </div>
             
-            <div class="notifications-box">
+            <div class="notifications-box" *ngIf="notificationDisplay">
               <div class="notifications-header">
                 <h3>Notificações</h3>
-                <button class="clear-all">Limpar todas</button>
               </div>
           
-              <div class="notification-item">
+              <div class="notification-item" *ngFor="let request of requests">
                 <div class="notification-content">
                   <div class="notification-avatar">
                     <img src="Default-Profile.webp" alt="Foto de perfil">
                   </div>
                   <div>
-                    <p class="notification-text">João Silva te enviou uma solicitação de chat</p>
-                    <span class="notification-time">há 5 minutos</span>
-                  </div>
-                </div>
-                <div class="notification-actions">
-                  <button class="action-button accept-button">Aceitar</button>
-                  <button class="action-button reject-button">Recusar</button>
-                </div>
-              </div>
-
-              <div class="notification-item">
-                <div class="notification-content">
-                  <div class="notification-avatar">
-                    <img src="Default-Profile.webp" alt="Foto de perfil">
-                  </div>
-                  <div>
-                    <p class="notification-text">João Silva te enviou uma solicitação de chat</p>
-                    <span class="notification-time">há 5 minutos</span>
-                  </div>
-                </div>
-                <div class="notification-actions">
-                  <button class="action-button accept-button">Aceitar</button>
-                  <button class="action-button reject-button">Recusar</button>
-                </div>
-              </div>
-
-              <div class="notification-item">
-                <div class="notification-content">
-                  <div class="notification-avatar">
-                    <img src="Default-Profile.webp" alt="Foto de perfil">
-                  </div>
-                  <div>
-                    <p class="notification-text">João Silva te enviou uma solicitação de chat</p>
-                    <span class="notification-time">há 5 minutos</span>
+                    <p class="notification-text">{{ request }}</p>
                   </div>
                 </div>
                 <div class="notification-actions">
@@ -104,9 +70,9 @@
                 </div>
               </div>
           
-              <div class="empty-notifications">
+              <!-- <div class="empty-notifications">
                 <p>Nenhuma notificação no momento</p>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="profile-img-box">

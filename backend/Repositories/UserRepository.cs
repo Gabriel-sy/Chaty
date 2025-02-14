@@ -44,4 +44,12 @@ public class UserRepository : IUserRepository
 
         return user;
     }
+
+    public async Task RefuseChatRequest(User refuser, string nameToRemove)
+    {
+        refuser.RemoveChatRequests(nameToRemove);
+
+        _context.Users.Update(refuser);
+        await _context.SaveChangesAsync();
+    }
 }

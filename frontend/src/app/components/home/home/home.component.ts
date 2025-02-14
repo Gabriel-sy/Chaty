@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ChatService } from '../../../services/chat.service';
 import { ChatViewModel } from '../../../models/ChatViewModel';
 import { SearchResultsModel } from '../../../models/SearchResultsModel';
+import { UserViewModel } from '../../../models/UserViewModel';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,8 @@ export class HomeComponent implements OnInit {
   userChats$: Observable<ChatViewModel[]> = new Observable<ChatViewModel[]>();
   isLoading: boolean = false;
   isSent: boolean = false;
+  requests: string[] = [];
+  notificationDisplay: boolean = false;
 
 
   constructor(
@@ -30,6 +33,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.userChats$ = this.chatService.getAllUserChats()
+    this.userService.getUser()
+    .subscribe({
+      next: (res: UserViewModel) => {
+        this.requests = res.chatRequests;
+        console.log(this.requests)
+      }
+    })
   }
 
   onSearchInput(event: Event): void {

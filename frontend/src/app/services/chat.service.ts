@@ -14,4 +14,8 @@ export class ChatService {
   getAllUserChats(){
     return this.http.get<ChatViewModel[]>(this.API)
   }
+
+  createChat(){
+    
+  }
 }

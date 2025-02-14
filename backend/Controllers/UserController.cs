@@ -40,4 +40,31 @@ public class UserController : ControllerBase
 
         return Ok();
     }
+
+    [HttpGet]
+    public async Task<IActionResult> GetUserByToken()
+    {
+        var email = HttpContext.User.Claims.Single(c => c.Type == "Name");
+
+        var result = await _service.FindUserByEmail(email.Value);
+
+        if (!result.IsSuccess)
+        {
+            return BadRequest("Não foi possível encontrar o usuário");
+        }
+
+        return Ok(result.Data);
+    }
+
+    [HttpPost("chat/refuse")]
+    public async Task<IActionResult> RefuseChat([FromBody] string refusedUser)
+    {
+        var email = HttpContext.User.Claims.Single(c => c.Type == "Name");
+
+        var refuser = await _service.FindUserByEmail(email.Value);
+
+        var result = await _service.RefuseChatRequest(refuser.Data, refusedUser);
+
+        return Ok();
+    }
 }

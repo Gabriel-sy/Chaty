@@ -38,4 +38,11 @@ public class UserService : IUserService
 
         return ResultViewModel<User?>.Success(user);
     }
+
+    public async Task<ResultViewModel> RefuseChatRequest(User refuser, string nameToRemove)
+    {
+        await _repository.RefuseChatRequest(refuser, nameToRemove);
+        
+        return ResultViewModel.Success();
+    }
 }

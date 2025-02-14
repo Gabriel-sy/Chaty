@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SearchResultsModel } from '../models/SearchResultsModel';
+import { UserViewModel } from '../models/UserViewModel';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,9 @@ export class UserService {
 
   sendChatRequest(receiver: string){
     return this.http.get(this.API + "/chat?receiver=" + receiver);
+  }
+
+  getUser(){
+    return this.http.get<UserViewModel>(this.API)
   }
 }
