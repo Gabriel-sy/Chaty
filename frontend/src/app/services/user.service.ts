@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SearchResultsModel } from '../models/SearchResultsModel';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,10 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   searchUsers(query: string){
-    return this.http.get<string[]>(this.API + "/search?query=" + query);
+    return this.http.get<SearchResultsModel[]>(this.API + "/search?query=" + query);
+  }
+
+  sendChatRequest(receiver: string){
+    return this.http.get(this.API + "/chat?receiver=" + receiver);
   }
 }

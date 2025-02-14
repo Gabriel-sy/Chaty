@@ -23,4 +23,21 @@ public class UserController : ControllerBase
 
         return Ok(result.Data);
     }
+
+    [HttpGet("chat")]
+    public async Task<IActionResult> SendChatRequest([FromQuery] string receiver)
+    {
+        var email = HttpContext.User.Claims.Single(c => c.Type == "Name");
+
+        var sender = await _service.FindUserByEmail(email.Value);
+        
+        var result = await _service.SendChatRequest(sender.Data, receiver);
+
+        if (!result.IsSuccess)
+        {
+            return BadRequest("Não foi possível enviar a solicitação");
+        }
+
+        return Ok();
+    }
 }

@@ -8,4 +8,5 @@ public interface IChatRepository
     Task DeleteChat(Chat chat);
     Task<string[]> FindAllUserChats(User user);
     Task<Chat?> FindChatByUsers(User user1, User user2);
+    
 }

@@ -29,4 +29,19 @@ public class UserRepository : IUserRepository
 
         return users.Select(u => u.UserName).ToList();
     }
+    
+    public async Task SendChatRequest(User receiver, string sender)
+    {
+        receiver.AddChatRequest(sender);
+
+        _context.Users.Update(receiver);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<User?> FindUserByEmail(string email)
+    {
+        var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
+
+        return user;
+    }
 }

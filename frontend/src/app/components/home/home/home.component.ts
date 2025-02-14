@@ -1,8 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ChatComponent } from "../chat/chat.component";
 import { UserService } from '../../../services/user.service';
-import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import { Observable, Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { ChatService } from '../../../services/chat.service';
+import { ChatViewModel } from '../../../models/ChatViewModel';
+import { SearchResultsModel } from '../../../models/SearchResultsModel';
 
 @Component({
   selector: 'app-home',
@@ -12,11 +15,21 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home.component.css',
   encapsulation: ViewEncapsulation.None
 })
-export class HomeComponent {
-  searchResults: any[] = [];
+export class HomeComponent implements OnInit {
+  searchResults: SearchResultsModel[] = [];
   userNames: string[] = [];
+  userChats$: Observable<ChatViewModel[]> = new Observable<ChatViewModel[]>();
+  isLoading: boolean = false;
+  isSent: boolean = false;
 
-  constructor(private userService: UserService){
+
+  constructor(
+    private userService: UserService,
+    private chatService: ChatService){
+  }
+
+  ngOnInit(): void {
+    this.userChats$ = this.chatService.getAllUserChats()
   }
 
   onSearchInput(event: Event): void {
@@ -30,13 +43,28 @@ export class HomeComponent {
 
   searchUsers(query: string): void {
     this.userService.searchUsers(query).subscribe({
-      next: (res) => {
+      next: (res: SearchResultsModel[]) => {
         this.searchResults = res;
         console.log(this.searchResults)
+        console.log(res)
       },
       error: (err) => {
         console.error('Erro ao buscar usuários:', err);
       }
     });
+  }
+
+  sendChatRequest(user: SearchResultsModel){
+    user.isLoading = true;
+    this.userService.sendChatRequest(user.userName).subscribe({
+      next: (res) => {
+        user.isLoading = false;
+        user.isSent = true;
+      },
+      error: (err) => {
+        user.isLoading = false;
+      }
+    });
+
   }
 }

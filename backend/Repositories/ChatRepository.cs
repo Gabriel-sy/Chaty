@@ -69,4 +69,6 @@ public class ChatRepository : IChatRepository
             .Select(g => g.First().Chat)
             .FirstOrDefaultAsync();
     }
+
+    
 }

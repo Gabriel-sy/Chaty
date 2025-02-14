@@ -27,9 +27,9 @@ public class ChatService : IChatService
         return ResultViewModel.Success();
     }
 
-    public async Task<ResultViewModel<List<ChatViewModel>>> GetUserChats(string username)
+    public async Task<ResultViewModel<List<ChatViewModel>>> GetUserChats(string email)
     {
-        var user = await _userRepository.FindUserByUserName(username);
+        var user = await _userRepository.FindUserByEmail(email);
 
         if (user is not null)
         {
@@ -39,4 +39,6 @@ public class ChatService : IChatService
         
         return ResultViewModel<List<ChatViewModel>>.Error("Nenhum chat encontrado");
     }
+
+    
 }

@@ -521,5 +521,24 @@ html, body {
   width: 100%;
 }
 
+.spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #F44336;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: #F44336;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 
 

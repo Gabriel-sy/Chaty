@@ -18,9 +18,11 @@ public class ChatController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllChatsFromUser([FromQuery] string username)
+    public async Task<IActionResult> GetAllChatsFromUser()
     {
-        var result = await _service.GetUserChats(username);
+        var email = HttpContext.User.Claims.Single(c => c.Type == "Name");
+        
+        var result = await _service.GetUserChats(email.Value);
 
         return Ok(result.Data);
     }
