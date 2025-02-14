@@ -26,9 +26,9 @@ public class ChatController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateChat([FromBody] ChatInputModel model)
+    public async Task<IActionResult> CreateChat([FromQuery] string user1, [FromQuery] string user2)
     {
-        var result = await _service.CreateChat(model);
+        var result = await _service.CreateChat(user1, user2);
 
         if (!result.IsSuccess)
         {

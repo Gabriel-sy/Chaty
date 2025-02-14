@@ -2,6 +2,8 @@
 
 public class UserChat
 {
+    protected UserChat(){}
+    
     public UserChat(int userId, User user, int chatId, Chat chat)
     {
         UserId = userId;

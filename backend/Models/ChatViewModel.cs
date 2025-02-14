@@ -4,14 +4,11 @@ namespace backend.Models;
 
 public class ChatViewModel
 {
-    public ChatViewModel(User user1, User user2, List<Message> messages)
+    public ChatViewModel(string userName)
     {
-        User1 = user1;
-        User2 = user2;
-        Messages = messages;
+        UserName = userName;
     }
 
-    public User User1 { get; set; }
-    public User User2 { get; set; }
-    public List<Message> Messages { get; set; }
+    //TODO: Ultima mensagem, data da ultima mensagem
+    public string UserName { get; set; }
 }

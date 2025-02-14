@@ -19,4 +19,6 @@ public class Chat : BaseEntity
     {
         UserChats.Add(userChat);
     }
+    
+    
 }

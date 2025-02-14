@@ -1,7 +1,7 @@
 <main>
   <div class="wrapper">
     <h1>Entre na sua conta</h1>
-    <form [formGroup]="formData">
+    <form [formGroup]="formData" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="email">Email</label>
         <input type="text" formControlName="email" placeholder="Digite seu email...">
@@ -14,7 +14,10 @@
         <app-form-error [condition]="fieldHasRequiredError('password') || false" text="Senha é obrigatória"></app-form-error>
       </div>
       <div class="form-group">
-        <button type="submit">Entrar</button>
+        <button type="submit" [disabled]="isLoading">
+          <span *ngIf="!isLoading">Entrar</span>
+          <span *ngIf="isLoading" class="spinner"></span>
+        </button>
         <p>Ainda não tem uma conta? <a href="">Cadastre-se</a></p>
       </div>
     </form>

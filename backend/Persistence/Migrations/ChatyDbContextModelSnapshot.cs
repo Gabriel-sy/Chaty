@@ -124,7 +124,7 @@ namespace backend.Persistence.Migrations
 
                     b.HasIndex("ChatId");
 
-                    b.ToTable("UserChat");
+                    b.ToTable("UserChats");
                 });
 
             modelBuilder.Entity("backend.Entities.Message", b =>

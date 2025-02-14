@@ -17,23 +17,26 @@ public class ChatService : IChatService
         _messageRepository = messageRepository;
     }
 
-    public async Task<ResultViewModel> CreateChat(ChatInputModel model)
+    public async Task<ResultViewModel> CreateChat(string username1, string username2)
     {
-        await _repository.CreateChat(model.User1, model.User2);
+        var user1 = await _userRepository.FindUserByUserName(username1);
+        var user2 = await _userRepository.FindUserByUserName(username2);
+        
+        await _repository.CreateChat(user1, user2);
         
         return ResultViewModel.Success();
     }
 
-    public async Task<ResultViewModel<List<Chat>>> GetUserChats(string username)
+    public async Task<ResultViewModel<List<ChatViewModel>>> GetUserChats(string username)
     {
         var user = await _userRepository.FindUserByUserName(username);
 
         if (user is not null)
         {
-            var chats = await _repository.FindAllUserChats(user);
-            return ResultViewModel<List<Chat>>.Success(chats);
+            var userNames = await _repository.FindAllUserChats(user);
+            return ResultViewModel<List<ChatViewModel>>.Success(userNames.Select(u => new ChatViewModel(u)).ToList());
         }
         
-        return ResultViewModel<List<Chat>>.Error("Nenhum chat encontrado");
+        return ResultViewModel<List<ChatViewModel>>.Error("Nenhum chat encontrado");
     }
 }

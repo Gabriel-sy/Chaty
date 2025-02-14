@@ -21,6 +21,8 @@ builder.Services.AddScoped<IChatRepository, ChatRepository>();
 builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 builder.Services.AddScoped<IChatService, ChatService>();
 builder.Services.AddScoped<IMessageService, MessageService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var connectionString = builder.Configuration.GetConnectionString("Chaty");
 builder.Services.AddDbContext<ChatyDbContext>(o => o.UseSqlServer(connectionString));
@@ -43,7 +45,21 @@ builder.Services
         };
     });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowFront",
+        configurePolicy: policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+
+});
+
 var app = builder.Build();
+
+app.UseCors("AllowFront");
 
 if (app.Environment.IsDevelopment())
 {

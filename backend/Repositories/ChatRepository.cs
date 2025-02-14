@@ -43,14 +43,21 @@ public class ChatRepository : IChatRepository
         
     }
 
-    public async Task<List<Chat>> FindAllUserChats(User user)
+    public async Task<string[]> FindAllUserChats(User user)
     {
-        var userChats = await _context.UserChats
+        var chatIds = await _context.UserChats
             .Where(uc => uc.UserId == user.Id)
-            .Include(userChat => userChat.Chat)
+            .Select(uc => uc.ChatId)
+            .Distinct()
             .ToListAsync();
+        
+        var otherUserNames = await _context.UserChats
+            .Where(uc => chatIds.Contains(uc.ChatId) && uc.UserId != user.Id)
+            .Select(uc => uc.User.UserName)
+            .Distinct()
+            .ToArrayAsync();
 
-        return userChats.Select(userChat => userChat.Chat).ToList();
+        return otherUserNames;
     }
 
     public async Task<Chat?> FindChatByUsers(User user1, User user2)

@@ -20,4 +20,13 @@ public class UserRepository : IUserRepository
 
        return user;
     }
+
+    public async Task<List<string>> FindUsersByUserName(string query)
+    {
+        var users =
+            await _context.Users.Where(u => EF.Functions.Like(u.UserName, $"%{query}%"))
+                .ToListAsync();
+
+        return users.Select(u => u.UserName).ToList();
+    }
 }

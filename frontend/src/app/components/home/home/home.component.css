@@ -225,7 +225,7 @@ html, body {
 }
 
 .results-box {
-  display: none;
+  display: block;
   position: absolute;
   top: calc(100% + 8px);
   left: 10px;
@@ -238,6 +238,13 @@ html, body {
   overflow-y: auto;
   z-index: 1000;
   animation: slideDown 0.2s ease-out;
+}
+
+.no-results {
+  padding: 20px;
+  text-align: center;
+  color: #9e9e9e;
+  font-size: 14px;
 }
 
 .result:hover {
@@ -292,7 +299,6 @@ html, body {
   font-size: 14px;
   color: #E0E0E0;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
